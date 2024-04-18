@@ -1486,7 +1486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511eb3eb961b97343b40a824d08be6dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 3
+  _maxHealth: 2
   _hpBarPositionOffset: 5
 --- !u!114 &7082715066953519292
 MonoBehaviour:

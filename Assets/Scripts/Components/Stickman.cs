@@ -16,7 +16,7 @@ namespace Components
         
         private StateFactory _stateFactory;
         private HealthBarCanvas _healthBarCanvas;
-        public int Damage { get => _damage; }
+        public int Damage => _damage;
 
         [Inject]
         public void Construct (StateFactory stateFactory,HealthBarCanvas healthBarCanvas)

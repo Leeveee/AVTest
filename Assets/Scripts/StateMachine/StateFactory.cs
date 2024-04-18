@@ -2,21 +2,21 @@ using Zenject;
 
 namespace StateMachine
 {
-  public class StateFactory
-  {
-    private readonly DiContainer _diContainer;
-
-    [Inject]
-    public StateFactory (DiContainer diContainer)
+    public class StateFactory
     {
-      _diContainer = diContainer;
-    }
+        private readonly DiContainer _diContainer;
 
-    public T CreatState<T>() where T : State
-    {
-      T component = _diContainer.Instantiate<T>();
+        [Inject]
+        public StateFactory (DiContainer diContainer)
+        {
+            _diContainer = diContainer;
+        }
 
-      return component;
+        public T CreatState<T>() where T : State
+        {
+            T component = _diContainer.Instantiate<T>();
+
+            return component;
+        }
     }
-  }
 }

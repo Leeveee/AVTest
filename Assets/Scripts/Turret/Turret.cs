@@ -1,5 +1,7 @@
-﻿using Extensions;
+﻿using Core;
+using Extensions;
 using UnityEngine;
+using Zenject;
 
 namespace Turret
 {
@@ -20,10 +22,16 @@ namespace Turret
 
         private Vector2 centerScreenPosition;
         private float nextFireTime;
+        private GameManager _gameManager;
 
+        [Inject]
+        private void Construct (GameManager gameManager)
+        {
+            _gameManager = gameManager;
+        }
         private void Update()
         {
-            if (Input.touchCount > 0)
+            if (Input.touchCount > 0 && _gameManager.IsStartGame)
             {
                 Touch touch = Input.GetTouch(0);
 
@@ -44,9 +52,9 @@ namespace Turret
         private void RotateTurret (Vector3 currentTouchPosition)
         {
             float targetRotationY = Mathf.Lerp(-maxRotation, maxRotation, (currentTouchPosition.x + 1) / 2);
-            float currentRotationY = Mathf.LerpAngle(transform.rotation.eulerAngles.y, targetRotationY, rotationSpeed * Time.deltaTime);
+            float currentRotationY = Mathf.LerpAngle(transform.localRotation.eulerAngles.y, targetRotationY, rotationSpeed * Time.deltaTime);
 
-            transform.rotation = Quaternion.Euler(-85f, currentRotationY, 0f);
+            transform.localRotation = Quaternion.Euler(-85f, currentRotationY, 0f);
         }
 
         private void Shoot()

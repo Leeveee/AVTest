@@ -35,7 +35,7 @@ namespace StateMachine.States.StickmanStates
         public override void Enter()
         {
             _animatorEventHolder.TakeDamage += OnTakeDamage;
-            _animatorComponent.ChangeAnimation(AnimatorHash.Attack, AnimationComponent.VERY_LITTLE_SMOOTH);
+            _animatorComponent.ChangeAnimation(AnimatorHash.Attack, AnimationComponent.LITTLE_SMOOTH);
         }
 
         public override void Tick()

@@ -15,11 +15,13 @@ namespace StateMachine.States.StickmanStates
         private Stickman _stickman;
         private AnimationComponent _animatorComponent;
         private readonly Registry _registry;
-        
+        private readonly GameManager _gameManager;
+
         [Inject]
-        private RunState (Registry registry)
+        private RunState (Registry registry, GameManager gameManager)
         {
             _registry = registry;
+            _gameManager = gameManager;
         }
 
         public override void SetDependence (Stickman stickman)
@@ -35,14 +37,14 @@ namespace StateMachine.States.StickmanStates
 
         public override void Enter()
         {
-            _animatorComponent.ChangeAnimation(AnimatorHash.Run, AnimationComponent.VERY_LITTLE_SMOOTH);
+            _animatorComponent.ChangeAnimation(AnimatorHash.Run, AnimationComponent.LITTLE_SMOOTH);
         }
 
         public override void Tick()
         {
             var _currentTarget = _registry.Car;
 
-            if (_currentTarget == null)
+            if (_currentTarget == null||_gameManager.IsEndGame)
             {
                 _stickman.StateMachine.ChangeState<StickmanIdleState>();
                 return;
