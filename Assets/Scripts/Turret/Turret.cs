@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Extensions;
+using UnityEngine;
 
 namespace Turret
 {
@@ -9,13 +10,13 @@ namespace Turret
         [SerializeField]
         private float maxRotation = 30f;
         [SerializeField]
-        private Projectile _projectile;
-        [SerializeField]
-        private Transform _firePoint;
-        [SerializeField] 
         private float fireRate = 0.5f;
         [SerializeField]
         private int _firePower = 40;
+        [SerializeField]
+        private Projectile _projectile;
+        [SerializeField]
+        private Transform _firePoint;
 
         private Vector2 centerScreenPosition;
         private float nextFireTime;
@@ -28,9 +29,9 @@ namespace Turret
 
                 if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
                 {
-                    Vector3 currentLocalCamPos = ScreenToLocalCamPos( Camera.main,Input.mousePosition, -5);
+                    Vector3 currentLocalCamPos = Camera.main.ScreenToLocalCamPos(Input.mousePosition, -5);
                     RotateTurret(currentLocalCamPos);
-                    
+
                     if (Time.time >= nextFireTime)
                     {
                         Shoot();
@@ -40,25 +41,19 @@ namespace Turret
             }
         }
 
-        private Vector3 ScreenToLocalCamPos( Camera cam, Vector3 screenPos, float camZ)
-        {
-            Vector3 pos = cam.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, camZ));
-            return cam.transform.InverseTransformPoint(pos);
-        }
-        
-        private void RotateTurret(Vector3 currentTouchPosition)
+        private void RotateTurret (Vector3 currentTouchPosition)
         {
             float targetRotationY = Mathf.Lerp(-maxRotation, maxRotation, (currentTouchPosition.x + 1) / 2);
             float currentRotationY = Mathf.LerpAngle(transform.rotation.eulerAngles.y, targetRotationY, rotationSpeed * Time.deltaTime);
 
-            transform.rotation = Quaternion.Euler(-90f, currentRotationY, 0f);
+            transform.rotation = Quaternion.Euler(-85f, currentRotationY, 0f);
         }
-        
-      private  void Shoot()
+
+        private void Shoot()
         {
-          var projectile = Instantiate(_projectile, _firePoint.position, _firePoint.rotation);
-          projectile.Rigidbody.AddForce(_firePoint.forward * _firePower, ForceMode.Impulse);
-          Destroy(projectile.gameObject,1f);
+            var projectile = Instantiate(_projectile, _firePoint.position, _firePoint.rotation);
+            projectile.Rigidbody.AddForce(_firePoint.forward * _firePower, ForceMode.Impulse);
+            Destroy(projectile.gameObject, 1f);
         }
     }
 }

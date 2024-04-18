@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4612210845756957333}
   - component: {fileID: 6339676599981136630}
   m_Layer: 0
-  m_Name: turret
+  m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 1
   maxRotation: 45
+  fireRate: 5
+  _firePower: 100
   _projectile: {fileID: 3867482303604414723, guid: 23bf9c3961d550f47a497f5f18b338ef, type: 3}
   _firePoint: {fileID: 8873018476172788274}
-  fireRate: 10
-  _firePower: 40
