@@ -16,3 +16,4 @@ MonoBehaviour:
   _healthData:
     _maxHealth: 500
     _hpBarPositionOffset: 10
+    _DieParticle: {fileID: 198499209413112314, guid: f01c1eba69de19e44b04d8d651aaac37, type: 3}
