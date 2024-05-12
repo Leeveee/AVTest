@@ -4,6 +4,7 @@ using Dreamteck.Splines;
 using Enums;
 using HealthBar;
 using HealthHandler;
+using ScriptableObjects;
 using UI;
 using UnityEngine;
 using Zenject;
@@ -16,22 +17,27 @@ namespace Components
         private HealthBarCanvas _healthBarCanvas;
         private GameManager _gameManager;
         private SplineFollower _splineFollower;
+        private CarConfig _carConfig;
 
         public Vector3 Position => transform.position;
 
         [Inject]
-        private void Construct (Registry registry, HealthBarCanvas healthBarCanvas, GameManager gameManager)
+        protected void Construct (Registry registry, HealthBarCanvas healthBarCanvas, GameManager gameManager, GameConfig gameConfig)
         {
+           
             _registry = registry;
             _healthBarCanvas = healthBarCanvas;
             _gameManager = gameManager;
+            _carConfig = gameConfig.CarConfig;
         }
+
+
         private void Awake()
         {
             IsAlive = true;
             _registry.Car = this;
             _healthBarCanvas.SpawnHealthBar(GetComponent<HealthComponent>());
-           _splineFollower = GetComponent<SplineFollower>();
+            _splineFollower = GetComponent<SplineFollower>();
         }
 
         private void OnEnable()
@@ -47,7 +53,7 @@ namespace Components
 
         private void StartMove()
         {
-            _splineFollower.followSpeed = 20;
+            _splineFollower.followSpeed = _carConfig.Speed;
         }
 
         private void OnCollisionEnter (Collision collision)
@@ -64,5 +70,7 @@ namespace Components
             base.Death();
             _gameManager.Lose();
         }
+
+        public override HealthData HealthData => _carConfig.HealthData;
     }
 }

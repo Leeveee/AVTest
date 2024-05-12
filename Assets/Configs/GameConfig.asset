@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 080f91b86b5542d0bcedb468f72a83bb, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: 
+  _carConfig: {fileID: 11400000, guid: e8bf79945160e7a439bb6f0927657af3, type: 2}
+  _turretConfig: {fileID: 11400000, guid: 2e50c97e2c7f0a041be62702fddc8632, type: 2}
+  _stickmanConfig: {fileID: 11400000, guid: b8e9c0af703adfb42969df39e40cb8c6, type: 2}
+  _projectileConfig: {fileID: 11400000, guid: dd78a84cf8c0c67488678b973fad3de9, type: 2}

@@ -2,27 +2,27 @@
 using DamageHandler;
 using HealthBar;
 using HealthHandler;
+using ScriptableObjects;
 using StateMachine;
 using StateMachine.States.StickmanStates;
-using UnityEngine;
 using Zenject;
 
 namespace Components
 {
     public class Stickman : CharacterWithStateMachine, IDamageDealer
     {
-        [SerializeField]
-        private int _damage;
-        
+
         private StateFactory _stateFactory;
         private HealthBarCanvas _healthBarCanvas;
-        public int Damage => _damage;
+        private StickmanConfig _stickmanConfig;
+        public int Damage => _stickmanConfig.Damage;
 
         [Inject]
-        public void Construct (StateFactory stateFactory,HealthBarCanvas healthBarCanvas)
+        public void Construct (StateFactory stateFactory,HealthBarCanvas healthBarCanvas, GameConfig gameConfig)
         {
             _stateFactory = stateFactory;
             _healthBarCanvas = healthBarCanvas;
+            _stickmanConfig = gameConfig.StickmanConfig;
         }
 
         private void Awake()
@@ -50,5 +50,7 @@ namespace Components
             Build().StateMachine.StartMachine();
             _healthBarCanvas.SpawnHealthBar(GetComponent<HealthComponent>());
         }
+
+        public override HealthData HealthData => _stickmanConfig.HealthData;
     }
 }

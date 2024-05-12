@@ -3,7 +3,6 @@ using Dreamteck.Splines;
 using Enums;
 using UI;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using Zenject;
 
@@ -60,10 +59,10 @@ namespace Core
 
                 if (touch.phase == TouchPhase.Began)
                 {
-                    if(!IsStartGame)
-                     StartPlay();
+                    if(!IsStartGame && !IsEndGame) 
+                        StartPlay();
 
-                    if (IsEndGame)
+                    else if (IsEndGame)
                         Restart();
                 }
             }

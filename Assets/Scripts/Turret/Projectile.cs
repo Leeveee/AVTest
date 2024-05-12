@@ -1,5 +1,7 @@
 using DamageHandler;
+using ScriptableObjects;
 using UnityEngine;
+using Zenject;
 
 namespace Turret
 {
@@ -8,8 +10,13 @@ namespace Turret
     {
         [SerializeField]
         private Rigidbody _rigidbody;
-        [SerializeField]
-        private int _damage;
+        private ProjectileConfig _projectileConfig;
+
+        [Inject]
+        private void Construct(GameConfig gameConfig)
+        {
+            _projectileConfig = gameConfig.ProjectileConfig;
+        }
         
         public Rigidbody Rigidbody =>_rigidbody;
 
@@ -17,7 +24,7 @@ namespace Turret
         {
             if (collision.gameObject.TryGetComponent( out IDamageable damageable))
             {
-                damageable.GetDamage(_damage);
+                damageable.GetDamage(_projectileConfig.Damage);
                 DisposeProjectile();
             }
         }

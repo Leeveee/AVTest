@@ -10,10 +10,10 @@ namespace HealthBar
 {
     public class HealthBar : MonoBehaviour
     {
-        private const float START_SCALE = 1f;
+        private const float START_SCALE = 0.3f;
         private const float MAX_SCALE = 1.6f;
-        private readonly Vector3 _startPos = new Vector3(0.5f, 3f, 0f);
-        private readonly Vector3 _maxPos = new Vector3(0.5f, 7f, 0f);
+        private readonly Vector3 _startPos = new Vector3(0.5f, 10f, 0f);
+        private readonly Vector3 _maxPos = new Vector3(0.5f, 20f, 0f);
 
         [SerializeField]
         private Image healthBar;

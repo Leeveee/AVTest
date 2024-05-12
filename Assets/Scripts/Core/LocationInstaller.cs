@@ -1,4 +1,5 @@
 using HealthBar;
+using ScriptableObjects;
 using StateMachine;
 using UI;
 using UnityEngine;
@@ -16,6 +17,8 @@ namespace Core
         private CameraSwitcher _cameraSwitcher; 
         [SerializeField]
         private GameManager _gameManager;
+        [SerializeField]
+        private GameConfig _gameConfig;
         
         public override void InstallBindings()
         {
@@ -26,6 +29,7 @@ namespace Core
             Container.Bind<CanvasManager>().FromInstance(_canvasManager).AsSingle();
             Container.Bind<CameraSwitcher>().FromInstance(_cameraSwitcher).AsSingle();
             Container.Bind<GameManager>().FromInstance(_gameManager).AsSingle();
+            Container.Bind<GameConfig>().FromScriptableObject(_gameConfig).AsSingle();
         }
     }
 }

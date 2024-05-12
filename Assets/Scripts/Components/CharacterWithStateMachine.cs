@@ -20,7 +20,7 @@
             return this;
         }
 
-        public void SetStateMachine (StateMachine.StateMachine startMachine)
+        protected void SetStateMachine (StateMachine.StateMachine startMachine)
         {
             _stateMachine = startMachine;
         }
