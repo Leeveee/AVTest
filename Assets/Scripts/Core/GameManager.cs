@@ -24,6 +24,11 @@ namespace Core
             _canvasManager = canvasManager;
         }
 
+        private void Awake()
+        {
+            Application.targetFrameRate = 60;
+        }
+
         private void Start()
         {
             _splineComputer.triggerGroups[0].triggers[0].onCross.AddListener(Win); 

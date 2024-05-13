@@ -12,11 +12,14 @@ namespace ScriptableObjects
         [SerializeField]
         private StickmanConfig _stickmanConfig;
         [SerializeField]
-        private ProjectileConfig _projectileConfig;
+        private ProjectileConfig _projectileConfig;  
+        [SerializeField]
+        private WindowConfig _windowConfig;
 
         public CarConfig CarConfig => _carConfig;
         public TurretConfig TurretConfig => _turretConfig;
         public StickmanConfig StickmanConfig => _stickmanConfig;
         public ProjectileConfig ProjectileConfig => _projectileConfig;
+        public WindowConfig WindowConfig =>_windowConfig;
     }
 }

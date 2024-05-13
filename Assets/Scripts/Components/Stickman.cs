@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using DamageHandler;
 using HealthBar;
 using HealthHandler;
 using ScriptableObjects;
@@ -9,7 +8,7 @@ using Zenject;
 
 namespace Components
 {
-    public class Stickman : CharacterWithStateMachine, IDamageDealer
+    public class Stickman : CharacterWithStateMachine
     {
 
         private StateFactory _stateFactory;
@@ -29,6 +28,8 @@ namespace Components
         {
             BuildStickman();
         }
+
+        public override HealthData HealthData => _stickmanConfig.HealthData;
 
         private void BuildStickman()
         {
@@ -50,7 +51,5 @@ namespace Components
             Build().StateMachine.StartMachine();
             _healthBarCanvas.SpawnHealthBar(GetComponent<HealthComponent>());
         }
-
-        public override HealthData HealthData => _stickmanConfig.HealthData;
     }
 }

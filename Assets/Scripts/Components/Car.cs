@@ -1,11 +1,8 @@
-﻿using System;
-using Core;
+﻿using Core;
 using Dreamteck.Splines;
-using Enums;
 using HealthBar;
 using HealthHandler;
 using ScriptableObjects;
-using UI;
 using UnityEngine;
 using Zenject;
 
@@ -51,17 +48,12 @@ namespace Components
             _gameManager.ClickToStart -= StartMove;
         }
 
-        private void StartMove()
-        {
-            _splineFollower.followSpeed = _carConfig.Speed;
-        }
-
         private void OnCollisionEnter (Collision collision)
         {
             if (collision.gameObject.TryGetComponent( out Stickman stickman))
             {
-               HealthComponent healthComponent =  stickman.GetComponent<HealthComponent>();
-               healthComponent.GetDamage(healthComponent.Health);
+                HealthComponent healthComponent =  stickman.GetComponent<HealthComponent>();
+                healthComponent.GetDamage(healthComponent.Health);
             }
         }
 
@@ -72,5 +64,10 @@ namespace Components
         }
 
         public override HealthData HealthData => _carConfig.HealthData;
+
+        private void StartMove()
+        {
+            _splineFollower.followSpeed = _carConfig.Speed;
+        } 
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Components
 {
-    public class CharacterWithStateMachine : CharacterBase
+    public abstract class CharacterWithStateMachine : CharacterBase
     {
         private StateMachine.StateMachine _stateMachine;
         public StateMachine.StateMachine StateMachine => _stateMachine;

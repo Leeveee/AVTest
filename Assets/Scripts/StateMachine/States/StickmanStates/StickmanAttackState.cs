@@ -9,6 +9,8 @@ namespace StateMachine.States.StickmanStates
 {
     public class StickmanAttackState : State
     {
+        private const float MIN_DISTANCE = 20f;
+        
         private Stickman _stickman;
         private AnimationComponent _animatorComponent;
         private AnimatorEventHolder _animatorEventHolder;
@@ -40,7 +42,7 @@ namespace StateMachine.States.StickmanStates
 
         public override void Tick()
         {
-            if (_registry.Car==null|| Vector3.Distance(_stickman.transform.position,  _registry.Car.Position) > 20f || _registry.Car.IsAlive==false)
+            if (_registry.Car==null|| Vector3.Distance(_stickman.transform.position,  _registry.Car.Position) > MIN_DISTANCE || _registry.Car.IsAlive==false)
             {
                 _stickman.StateMachine.ChangeState<StickmanIdleState>();
             }

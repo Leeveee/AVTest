@@ -21,6 +21,10 @@ namespace Core
         private void OnEnable()
         {
             _gameManager.ClickToStart += ChangeStartCamera;
+        }   
+        private void OnDestroy()
+        {
+            _gameManager.ClickToStart -= ChangeStartCamera;
         }
 
         private void ChangeStartCamera()

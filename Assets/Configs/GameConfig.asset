@@ -16,3 +16,4 @@ MonoBehaviour:
   _turretConfig: {fileID: 11400000, guid: 2e50c97e2c7f0a041be62702fddc8632, type: 2}
   _stickmanConfig: {fileID: 11400000, guid: b8e9c0af703adfb42969df39e40cb8c6, type: 2}
   _projectileConfig: {fileID: 11400000, guid: dd78a84cf8c0c67488678b973fad3de9, type: 2}
+  _windowConfig: {fileID: 11400000, guid: ea501f6d44ca363478bf3e158bf4a8bb, type: 2}

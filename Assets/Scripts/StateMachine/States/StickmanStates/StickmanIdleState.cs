@@ -8,6 +8,8 @@ namespace StateMachine.States.StickmanStates
 {
     public class StickmanIdleState : State
     {
+        private const float MAX_DISTANCE = 40f;
+        
         private Stickman _stickman;
         private AnimationComponent _animatorComponent;
         private readonly Registry _registry;
@@ -43,7 +45,7 @@ namespace StateMachine.States.StickmanStates
                 return;
             }
 
-            if (Vector3.Distance(_stickman.transform.position, _currentTarget.transform.position) < 40f)
+            if (Vector3.Distance(_stickman.transform.position, _currentTarget.transform.position) < MAX_DISTANCE)
             {
                 _stickman.StateMachine.ChangeState<RunState>();
             }

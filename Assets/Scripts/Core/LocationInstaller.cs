@@ -24,12 +24,12 @@ namespace Core
         {
             Container.Bind<StateFactory>().AsSingle();
             Container.Bind<Registry>().AsSingle();
-            
+
+            Container.Bind<GameConfig>().FromScriptableObject(_gameConfig).AsSingle();
             Container.Bind<HealthBarCanvas>().FromInstance(_healthBarCanvas).AsSingle();
             Container.Bind<CanvasManager>().FromInstance(_canvasManager).AsSingle();
             Container.Bind<CameraSwitcher>().FromInstance(_cameraSwitcher).AsSingle();
             Container.Bind<GameManager>().FromInstance(_gameManager).AsSingle();
-            Container.Bind<GameConfig>().FromScriptableObject(_gameConfig).AsSingle();
         }
     }
 }

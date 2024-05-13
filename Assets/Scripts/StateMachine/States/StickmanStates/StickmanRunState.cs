@@ -1,8 +1,8 @@
 using Animation;
 using Components;
 using Core;
-using DamageHandler;
 using Extensions;
+using ScriptableObjects;
 using UnityEngine;
 using Zenject;
 
@@ -10,18 +10,20 @@ namespace StateMachine.States.StickmanStates
 {
     public class RunState : State
     {
-        private const float ROTATION_SPEED = 140;
-        private const float MOVE_SPEED = 5;
+        private const float MAX_DISTANCE = 10f;
+        
         private Stickman _stickman;
         private AnimationComponent _animatorComponent;
         private readonly Registry _registry;
         private readonly GameManager _gameManager;
+        private readonly StickmanConfig _stickmanConfig;
 
         [Inject]
-        private RunState (Registry registry, GameManager gameManager)
+        private RunState (Registry registry, GameManager gameManager, GameConfig gameConfig)
         {
             _registry = registry;
             _gameManager = gameManager;
+            _stickmanConfig = gameConfig.StickmanConfig;
         }
 
         public override void SetDependence (Stickman stickman)
@@ -52,7 +54,7 @@ namespace StateMachine.States.StickmanStates
 
             Move(_currentTarget.Position);
 
-            if (Vector3.Distance(_stickman.transform.position, _currentTarget.Position) < 10f)
+            if (Vector3.Distance(_stickman.transform.position, _currentTarget.Position) < MAX_DISTANCE)
             {
                 _stickman.StateMachine.ChangeState<StickmanAttackState>();
             }
@@ -62,11 +64,11 @@ namespace StateMachine.States.StickmanStates
         {
             Vector3 direction = (destination - _stickman.transform.position).normalized;
 
-            _stickman.transform.position += direction * (MOVE_SPEED * Time.deltaTime);
+            _stickman.transform.position += direction * (_stickmanConfig.MoveSpeed * Time.deltaTime);
 
             if (direction != Vector3.zero)
             {
-                Quaternion newRotation = _stickman.transform.rotation.RotateTowardsDirection(direction, ROTATION_SPEED);
+                Quaternion newRotation = _stickman.transform.rotation.RotateTowardsDirection(direction, _stickmanConfig.RotationSpeed);
                 _stickman.transform.rotation = newRotation;
             }
         }
